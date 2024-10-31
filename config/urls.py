@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import IndexView, PessoaView, CidadeView, CursoView, TurmaView, AlojamentoView, QuartoView, LoginView, CadastroView
+from app.views import IndexView, PessoaView, CidadeView, CursoView, TurmaView, AlojamentoView, QuartoView, LoginView, CadastroView, FeedbackView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +28,7 @@ urlpatterns = [
     path("pessoas/", PessoaView.as_view(template_name = 'pessoas.html'), name="pessoas"),
     path("cidades/", CidadeView.as_view(template_name = 'cidades.html'), name="cidades"),
     path("cursos/", CursoView.as_view(template_name = 'cursos.html'), name="cursos"),
-    path("turma/", TurmaView.as_view(template_name = 'turmas.html'), name="turmas")
+    path("turma/", TurmaView.as_view(template_name = 'turmas.html'), name="turmas"),
+    path("feedback/", FeedbackView.as_view(), name="feedback")
 ]
+

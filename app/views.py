@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.http import HttpResponse
 from django.views import View
-from .models import Cidade, Curso, Turma, Alojamento, Quarto, Pessoa
+from .models import Cidade, Curso, Turma, Alojamento, Quarto, Pessoa, Feedback
 
 # View para a página inicial
 class IndexView(View):
@@ -10,7 +11,8 @@ class IndexView(View):
         return render(request, 'index.html')
 
     def post(self, request):
-        pass
+        return HttpResponse("Formulário enviado com sucesso!")
+
 # View para exibir a página de login
 class CadastroView(View):
     template_name = 'cadastro.html'
@@ -112,5 +114,18 @@ class QuartoView(View):
         pass
 
 
+
+class FeedbackView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        nome = data.get('nome')
+        email = data.get('email')
+        mensagem = data.get('mensagem')
+
+        # Salva o feedback no banco de dados
+        feedback = Feedback.objects.create(nome=nome, email=email, mensagem=mensagem)
+        feedback.save()
+
+        return JsonResponse({'status': 'success', 'message': 'Feedback enviado com sucesso!'})
 
 

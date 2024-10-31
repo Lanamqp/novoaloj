@@ -22,13 +22,13 @@ class Curso(models.Model):
 
 class Turma(models.Model):
         nome = models.CharField(max_length=100)
-
+        curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name="turmas")
         class Meta:
             verbose_name = "Turma"
             verbose_name_plural = "Turmas"
 
         def __str__(self):
-            return f'{self.nome}'
+            return f'{self.nome} - {self.curso.nome}'
 
 
 
@@ -70,3 +70,15 @@ class Pessoa(models.Model):
 
         def __str__(self):
             return f'{self.nome} - {self.curso}'
+
+
+
+class Feedback(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    data_envio = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Feedback de {self.nome}"
+

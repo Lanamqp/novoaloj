@@ -97,14 +97,13 @@
         <nav>
             <ul>
                 <li><a href="/login/">Login</a></li>
-                <li><a href="index">Início</a></li>
+                <li><a href="/">Início</a></li>
                 <li><a href="/alojamentos/">Alojamentos</a></li>
                 <li><a href="/quartos/">Quartos</a></li>
                 <li><a href="/pessoas/">Pessoas</a></li>
                 <li><a href="/cidades/">Cidades</a></li>
                 <li><a href="/cursos/">Cursos</a></li>
                 <li><a href="/turma/">Turmas</a></li>
-                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -115,6 +114,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>curso</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,7 +123,7 @@
                     <tr>
                         <td>{{ turma.id }}</td>
                         <td>{{ turma.nome }}</td>
-                       
+                        <td>{{ turma.curso.nome }}</td>
                     </tr>
                     {% endfor %}
                 {% else %}
